@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const pool = require('./models/databases/pg');
+require('dotenv').config();
 const cors = require('cors');
 const session = require('express-session');
 const flash = require('express-flash');
@@ -56,6 +57,7 @@ app.use('/', searchRouter);
 app.use('/', logoutRouter);
 
 // Start server
-app.listen(3000, () => {
-  console.log("listening to port 3000...");
+const PORT = process.env.PORT || 3000
+app.listen(process.env.PORT, () => {
+  console.log(`Listenng in port ${PORT} ...`);
 });
