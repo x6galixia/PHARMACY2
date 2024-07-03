@@ -7,23 +7,57 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
     />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
     <title>Home</title>
   </head>
   <body>
+    <div>
+      <h1>Welcome, <%= userType %> <%= username %>!</h1>
+    </div>
+    <a href="/"><button>return</button></a>
     <form action="/logout?_method=DELETE" method="POST">
-      <div
-        style="
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-        "
-      >
-        <div style="text-align: center">
-          <h1>Welcome, <%= userType %> <%= username %>!</h1>
-          <button type="submit">Log out</button>
-        </div>
+      <button type="submit">Log out</button>
+    </form>
+
+    <form action="addstocks">
+      <button type="submit">Add Stocks</button>
+    </form>
+
+    <form action="search" method="POST">
+      <div>
+        <input type="search" name="search" placeholder="Search" required />
+        <button type="submit">Search</button>
       </div>
     </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Brand Name</th>
+          <th>Manufacturer</th>
+          <th>Dosage</th>
+          <th>Expiration</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (viewList && viewList.length > 0) { %> <% viewList.forEach(item =>
+        { %>
+        <tr>
+          <td><%= item.itemName %></td>
+          <td><%= item.brand %></td>
+          <td><%= item.manufacturer %></td>
+          <td><%= item.dosage %> mg</td>
+          <td><%= item.expiration %></td>
+          <td><%= item.quantity %></td>
+        </tr>
+        <% }) %> <% } else { %>
+        <tr>
+          <td colspan="6">No items found.</td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
   </body>
 </html>
