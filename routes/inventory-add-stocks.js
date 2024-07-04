@@ -8,7 +8,7 @@ function checkAuthenticated(req, res, next) {
     return next();
   }
   res.redirect('/login');
-}
+} 
 
 // Route to render the inventory-add-stocks page
 router.get('/addstocks', checkAuthenticated, (req, res) => {

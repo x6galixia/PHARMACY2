@@ -31,3 +31,20 @@ VALUES
 	('Aspirin', 'Bayer', 'hotdog', '25 mg', '2024-12-31', 100),
 	('Ibuprofen', 'Advil', 'hotdog', '25 mg', '2025-01-15', 200);
 	
+	CREATE TABLE request (
+    rq_id SERIAL PRIMARY KEY,
+    
+    pt_name VARCHAR(250) NOT NULL,
+    pt_age INT NOT NULL,
+    pt_gender VARCHAR(6) NOT NULL,
+    pt_contact VARCHAR(15) NOT NULL,
+    pt_address VARCHAR(250) NOT NULL,
+    pt_prescription BYTEA NOT NULL, -
+
+    rp_name VARCHAR(250) NOT NULL,
+    rp_age INT NOT NULL,
+    rp_relationship VARCHAR(250) NOT NULL,
+    rp_contact VARCHAR(15) NOT NULL, 
+    rp_address VARCHAR(250) NOT NULL,
+    rp_valid_id BYTEA NOT NULL
+);

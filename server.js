@@ -12,6 +12,7 @@ const loginRouter = require('./routes/login');
 const IndexRouter = require('./routes/index');
 const inventoryAddStocksRouter = require('./routes/inventory-add-stocks');
 const searchRouter = require('./routes/search');
+const requestRouter = require('./routes/request')
 const logoutRouter = require('./routes/logout');
 
 // Database connection
@@ -53,7 +54,8 @@ app.use(passport.session());
 app.use('/login', loginRouter);
 app.use('/', IndexRouter);
 app.use('/inventory', inventoryAddStocksRouter);
-app.use('/', searchRouter); 
+app.use('/', searchRouter);
+app.use('/request-btn', requestRouter);
 app.use('/', logoutRouter);
 
 // Start server
