@@ -1,79 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/inventories.css" />
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <title>Add Stocks</title>
-  </head>
-  <body>
-    <main>
-      <header class="py-1">
-        <nav id="navbar">
-            <div id="logo2"><h1 id="LIBREMEDISINA">
-                <span class="green-text">#</span>
-                <span class="pink-text">LIBRE</span>
-                <span class="green-text">MEDISINA</span>
-            </h1></div>
-             <!-- Logout icon -->
-             <div class="dropdown">
-              <img class="dropbtn" onclick="toggleDropdown()" src="/images/profile.png" alt="">
-              <div id="dropdownContent" class="dropdown-content">
-                  <div id="profile-sec">
-                    <div id="meow">
-                      <img id="profile2" src="/images/profile.png" alt="">
-                    </div>
-                    <div id="names">
-                      <p class=" infos" id="info"><%= username %></p>
-                    <p class="infor" id="info"><%= userType %></p>
-                    </div>              
-                  </div>
-                  <hr>
-                  <form action="/logout?_method=DELETE" method="POST">
-                    <button id="log-butt" type="submit"><i class="fa fa-sign-out-alt"></i> Log out</button>
-                  </form>
-              </div>
-            </div>
-        </nav>
-      </header>
-      <div>
-        <img id="dalagan" href="/" src="/images/back.png" alt="">
-        <div id="tunga">
-          <div>
-            
-            <form id="inventory" action="/inventory/addstocks" method="POST">
-              <!-- Updated action -->
-              <h1 id="texting">ADD MEDICINE</h1>
-              <input id="border" type="text" placeholder="Item name" name="itemName" required />
-              <input id="border" type="text" placeholder="Brand name" name="brand" required />
-              <input
-              id="border"
-                type="text"
-                placeholder="Manufacturer"
-                name="manufacturer"
-                required
-              />
-              <input id="border" type="text" placeholder="Dosage" name="dosage" required />
-              <input id="calendar" type="date" name="expiration" required />
-              <input
-                id="border"
-                type="number"
-                placeholder="Quantity"
-                name="quantity"
-                required
-              />
-              <br />
-              <button id="borders" type="submit">Add Medicine</button>
-            </form>
-          </div>
-          <div>
-
-          </div>
-        </div>
-      </div>
-    </main>
-    <script src="/java/index.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Stocks</title>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Add Medicine</h1>
+    </header>
+    <form action="/inventory/addstocks" method="POST">
+      <input type="text" placeholder="Item name" name="itemName" required />
+      <input type="text" placeholder="Brand name" name="brand" required />
+      <input type="text" placeholder="Manufacturer" name="manufacturer" required />
+      <input type="text" placeholder="Dosage" name="dosage" required />
+      <input type="date" name="expiration" required />
+      <input type="number" placeholder="Quantity" name="quantity" required />
+      <button type="submit">Add Medicine</button>
+    </form>
+  </main>
+</body>
 </html>
