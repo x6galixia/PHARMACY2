@@ -13,6 +13,15 @@
   <body>
     <a href="/"><button>return</button></a>
     <form action="/inventory/addstocks" method="POST">
+
+      <div>
+        <h1>Welcome, <%= userType %> <%= username %>!</h1>
+      </div>
+
+      <form action="/logout?_method=DELETE" method="POST">
+        <button type="submit">Log out</button>
+      </form>
+
       <!-- Updated action -->
       <input type="text" placeholder="Item name" name="itemName" required />
       <input type="text" placeholder="Brand name" name="brand" required />

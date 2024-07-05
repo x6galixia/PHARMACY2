@@ -3,6 +3,20 @@ const router = express.Router();
 const multer = require("multer");
 const pool = require("../models/databases/pg");
 
+// Middleware to set user data in res.locals
+function setUserData(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.locals.username = req.user.name;
+    res.locals.userType = req.user.usertype;
+  } else {
+    res.locals.username = null;
+    res.locals.userType = null;
+  }
+  next();
+}
+
+router.use(setUserData);
+
 // Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -71,8 +85,7 @@ router.post(
           rp_valid_id,
         ]
       );
-      res.redirect('/')
-      res.status(200).json({ message: "Request submitted successfully" });
+      res.redirect('/');
     } catch (err) {
       console.error("Error processing request:", err);
       res.status(500).json({ error: err.message });

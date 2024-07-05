@@ -8,6 +8,10 @@
   <body>
     <form action="/request-btn/request" method="POST" enctype="multipart/form-data">
       <div>
+        <div>
+          <h1>Welcome, <%= userType %> <%= username %>!</h1>
+        </div>
+
         <h1>PATIENTS INFORMATION</h1>
         <input type="text" name="pt_name" placeholder="Name" required />
         <input type="number" name="pt_age" placeholder="Age" required />

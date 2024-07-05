@@ -3,6 +3,13 @@ const router = express.Router();
 const passport = require('passport');
 const pool = require('../models/databases/pg'); // Make sure to properly import your database pool
 
+// Helper function to format date
+function formatDate(dateString) {
+  const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', options);
+}
+
 // Middleware to check if user is authenticated
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -10,6 +17,20 @@ function checkAuthenticated(req, res, next) {
   }
   res.redirect('/login');
 }
+
+// Middleware to set user data in res.locals
+function setUserData(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.locals.username = req.user.name;
+    res.locals.userType = req.user.usertype;
+  } else {
+    res.locals.username = null;
+    res.locals.userType = null;
+  }
+  next();
+}
+
+router.use(setUserData);
 
 // Route for the home page
 router.get('/', checkAuthenticated, async (req, res) => {
@@ -30,8 +51,6 @@ router.get('/', checkAuthenticated, async (req, res) => {
     }
 
     res.render('index', {
-      username: req.user.name,
-      userType: req.user.usertype,
       viewList: viewAll
     });
   } catch (err) {
@@ -50,12 +69,5 @@ router.post('/', checkAuthenticated, passport.authenticate('local', {
 router.get('/addstocks', checkAuthenticated, (req, res) => {
   res.render('inventory-add-stocks');
 });
-
-// Helper function to format date
-function formatDate(dateString) {
-  const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', options);
-}
 
 module.exports = router;
